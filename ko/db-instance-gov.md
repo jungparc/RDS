@@ -303,9 +303,9 @@ RDS for MySQL에서는 DB 스키마와 사용자를 손쉽게 관리할 수 있�
 GRANT CREATE,DROP,LOCK TABLES,REFERENCES,EVENT,ALTER,INDEX,INSERT,SELECT,UPDATE,DELETE,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,EXECUTE,CREATE USER,PROCESS,RELOAD,REPLICATION SLAVE,REPLICATION CLIENT,SHOW DATABASES, CREATE TEMPORARY TABLES,TRIGGER ON *.* TO '{user_id}'@'{host}' WITH GRANT OPTION;
 ```
 
-직접 제어 사용 이후 다시 사용 안함으로 변경하였을 때 주의해야할 점
-* 기존에 부여했던 권한들을 회수하지 않습니다. 이 때 명령어를 사용해 DB 스키마나 사용자를 추가한다면 웹 콘솔의 데이터와 정합성이 맞지 않을 수 있습니다.
-* 사용자가 어떤 권한을 갖고 있던 콘솔에서는 CUSTOM으로 표현됩니다.
+직접 제어 사용 이후 다시 사용 안 함으로 변경했을 때 주의할 점
+* 기존에 부여했던 권한들을 회수하지 않습니다. 이때 명령어를 사용해 DB 스키마나 사용자를 추가한다면 웹 콘솔의 데이터와 정합성이 맞지 않을 수 있습니다.
+* 사용자에게 부여된 권한과 상관없이 데이터베이스에 존재하는 모든 사용자는 CUSTOM 권한으로 표현됩니다.
 
 ## 고가용성 DB 인스턴스
 
