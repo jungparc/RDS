@@ -214,7 +214,7 @@ DB 인스턴스의 DB 스키마 & 사용자 탭에서는 데이터베이스에 �
 
 #### DB 스키마 생성
 
-![db-instance-detail-schema_ko](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-schema_ko.png)
+![db-instance-detail-schema_ja](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-schema_ja.png)
 
 ❶ **생성** 버튼을 클릭하면 DB 스키마의 이름을 입력할 수 있는 팝업 창이 나타납니다.
 ❷ DB 스키마 이름을 입력한 후 **확인** 버튼을 클릭하여 DB 스키마를 생성할 수 있습니다.
@@ -614,7 +614,7 @@ recordは障害が発生したマスターから予備マスターに変更さ�
 
 #### 장애 조치 수동 제어
 
-예비 마스터에 변경 사항을 먼저 적용한 다음 그 추이를 관찰하고자 하거나, 정확한 시간에 장애 조치를 실행하고 싶을 때가 있습니다. 이러한 요구를 충족하기 위해, 웹 콘솔을 통해 장애 조치 시점을 직접 제어할 수 있습니다. 장애 조치 수동 제어를 선택하면 예비 마스터가 재시작된 후 웹 콘솔에 **장애 조치** 버튼이 표시됩니다. 이 버튼을 클릭하면 장애 조치가 실행되며, 최대 5일간 실행을 대기할 수 있습니다. 5일 이내에 장애 조치를 실행하지 않을 경우, 해당 작업은 자동으로 취소됩니다.
+예비 마스터에 변경 사항을 먼저 적용한 다음 그 추이를 관찰하고자 하거나, 정확한 시간에 장애 조치를 실행하고 싶을 때가 있습니다. 이러한 요구를 충족하기 위해, 웹 콘솔을 통해 장애 조치 시점을 직접 제어할 수 있습니다. 장애 조치 수동 제어를 선택하면 예비 마스터가 재시작된 후 ❶ 웹 콘솔에 **장애 조치** 버튼이 표시됩니다. 이 버튼을 클릭하면 장애 조치가 실행되며, 최대 5일간 실행을 대기할 수 있습니다. 5일 이내에 장애 조치를 실행하지 않을 경우, 해당 작업은 자동으로 취소됩니다.
 
 ![db-instance-ha-wait-manual-failover-ja](https://static.toastoven.net/prod_rds/24.03.12/db-instance-ha-wait-manual-failover-ja.png)
 
@@ -932,3 +932,63 @@ mysql> call mysql.tcrds_repl_slave_start;
 ```
 mysql> call mysql.tcrds_repl_init();
 ```
+
+## 付録
+
+### 付録1. ハイパーバイザメンテナンスのためのDBインスタンスマイグレーションガイド
+
+NHN Cloudは周期的にDBインスタンスのハイパーバイザソフトウェアをアップデートしてセキュリティと安定性を向上させています。
+メンテナンス対象ハイパーバイザで起動中のDBインスタンスは、マイグレーションを通してメンテナンスが完了したハイパーバイザに移動する必要があります。
+
+DBインスタンスのマイグレーションはNHN Cloudコンソールで開始できます。
+DB構成に応じて特定DBインスタンスを選択してマイグレーションする時、関連するDBインスタンス(例えばSlaveインスタンス)もメンテナンス対象の場合は一緒にマイグレーションを進行します。
+下記のガイドに従ってコンソールにあるマイグレーション機能を利用してください。
+メンテナンス対象に指定されたDBインスタンスがあるプロジェクトに移動します。
+
+#### 1. メンテナンス対象DBインスタンスを確認します。
+
+名前の横にマイグレーションボタンがあるDBインスタンスがメンテナンス対象のインスタンスです。
+
+![rds_planed_migration_0](https://static.toastoven.net/prod_rds/planned_migration_alarm/image0_ja.png)
+
+マイグレーションボタンにマウスオーバーすると、メンテナンス日程の詳細を確認できます。
+
+![rds_planed_migration_1](https://static.toastoven.net/prod_rds/planned_migration_alarm/image1_ja.png)
+
+#### 2. メンテナンス対象DBインスタンスに接続中のアプリケーションソフトウェアを終了する必要があります。
+
+DBに接続しているサービスに影響を与えないように、適切な措置を取ってください。
+やむを得ずサービスに影響を与えてしまう時は、NHN Cloudサポートに連絡してくだされば、適切な措置を案内いたします。
+
+#### 3. メンテナンス対象DBインスタンスを選択してマイグレーションボタンをクリックし、DBインスタンスマイグレーションの確認ウィンドウが表示されたら確認ボタンをクリックします。
+
+![rds_planed_migration_2](https://static.toastoven.net/prod_rds/planned_migration_alarm/image2_ja.png)
+
+#### 4. DBインスタンスのマイグレーションが終わるまで待機します。
+
+DBインスタンスの状態が変更されない場合は「更新」を行ってください。
+
+![rds_planed_migration_3](https://static.toastoven.net/prod_rds/planned_migration_alarm/image3_ja.png)
+
+DBインスタンスのマイグレーション中は何も操作ができません。
+DBインスタンスのマイグレーションが正常に完了しなかった場合、自動的に管理者に報告され、NHN Cloudから別途連絡いたします。
+
+### 付録2. RDSを利用してFederated Storage Engine使用するときの構成ガイド
+
+Federated Storage Engineを使用する場合、次を考慮する必要があります。
+
+#### ローカルノードとしてRDSを利用する構成の場合
+
+* リモートノードへの送信を許可する設定が必要です。
+  * DB 보안 그룹에서 규칙을 추가할 수 있습니다.
+  * 자세한 사항은 [DB 보안 그룹](db-security-group/) 항목을 참고합니다.
+* ローカルノード役割のRDSにRead Only Slaveを追加した構成で使用する場合は、 DB Configurationのreplicate-ignore-tableにfederated設定されたテーブル名を指定する必要があります。
+  * Read Only Slaveを構成する場合、 federatedテーブルも複製され、MasterとRead Only Slaveがリモートノードを一緒に見ます。
+  * この場合、Masterに行ったデータ入力がfederated設定によってリモートノードにも行われ、Read Only Slaveでも同様に同じ入力が行われ、重複キーエラーなどによるレプリケーション中断が発生することがあります。
+  * Read Only Slaveがfederatedテーブルを複製しないようにreplicate-ignore-tableに設定する必要があります。
+
+#### リモートノードとしてRDSを利用する構成の場合
+
+* ローカルノードでの受信を許可する設定が必要です。
+  * DB 보안 그룹에서 규칙을 추가할 수 있습니다.
+  * 자세한 사항은 [DB 보안 그룹](db-security-group/) 항목을 참고합니다.

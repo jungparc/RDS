@@ -32,7 +32,7 @@ RDS for MySQL uses Percona XtraBackup to back up databases. You have to use the 
 > [Note]
 > On August 17, 2023, the version of the XtraBackup utility was upgraded. The XtraBackup version used for the previous backup can be found in the web console.
 
-백업 시에 적용되는 설정 항목은 다음과 같으며, 자동 백업 및 수동 백업 시에 모두 적용됩니다.
+The following settings are applied to backup, and also to auto and manual backups.
 
 ![backup-config-en](https://static.toastoven.net/prod_rds/24.03.12/backup-config-en.png)
 
@@ -40,7 +40,7 @@ RDS for MySQL uses Percona XtraBackup to back up databases. You have to use the 
 
 * `FLUSH TABLES WITH READ LOCK` ets whether the syntax is enabled or disabled.
 * Table lock enables the `FLUSH TABLES WITH READ LOCK` syntax periodically during backups to ensure consistency in backup data. If `FLUSH TABLES WITH READ LOCK` syntax fails to run, the backup will fail.
-* You can disable table locking if the DML query load is high during a backup. If you do not use table lock, `FLUSH TABLES WITH READ LOCK` syntax will not run, so a high DML load does not cause the backup to fail. 하지만 테이블 잠금을 사용하지 않은 백업은 백업 데이터의 일관성이 보장되지 않을 수 있으며, 이에 따라 테이블 잠금을 사용하지 않고 생성된 백업 및 테이블 잠금을 사용하지 않도록 설정된 DB 인스턴스에 대해 복원 및 복제 과정을 포함한 일부 작업을 지원하지 않습니다.
+* You can disable table locking if the DML query load is high during a backup. If you do not use table lock, `FLUSH TABLES WITH READ LOCK` syntax will not run, so a high DML load does not cause the backup to fail. However, backups without table lock may not ensure consistency of backup data, and as a result, some operations, including restore and replication processes, are not supported for backups created without table lock and for DB instances with table locking disabled.
 
 **Query Latency Dash Time (second)**
 
@@ -75,34 +75,31 @@ If you need to permanently store databases at a certain point in time, you can p
 
 ### Auto Backup
 
-수동으로 백업을 수행하는 경우 외에도 복원 작업을 위해 필요한 경우 또는 자동 백업 스케줄 설정에 따라 자동 백업이 수행될 수 있습니다. 자동 백업은 DB 인스턴스와 생명 주기가 동일합니다. DB 인스턴스가 삭제되면 보관된 자동 백업은 모두 삭제됩니다. 자동 백업에서 지원하는 설정 항목은 아래와 같습니다.
+In addition to manually performing backups, auto backups can occur when needed for restore operations or based on auto backup schedule settings. Auto backups have the same lifecycle as DB instances. When a DB instance is deleted, all archived auto backups are deleted. The following setting items are supported by auto backups.
 
-![backup-config-en](https://static.toastoven.net/prod_rds/24.03.12/backup-config-en.png)
+**Allow Auto Backup**
 
-**자동 백업 허용**
+* If you don't allow auto backups, all auto backups will be blocked from taking place, and some operations, including restore and replication processes, that might otherwise take place on demand, will not be supported. In addition, you won't be able to set the following auto backup-related items
 
-* 자동 백업을 허용하지 않을 시 모든 자동 백업의 수행이 차단되며, 필요에 의해 백업이 수행될 가능성이 있는 복원, 복제 과정을 포함한 일부 작업을 지원하지 않습니다. 또한 아래의 자동 백업 관련 항목들에 대해 설정이 불가능합니다.
+**Auto Backup Retention Period**
 
-**자동 백업 보관 기간**
+* Sets the time period for storing auto backups on storage. It can be kept for up to 730 days, and if the auto backup archive period changes, the expired auto backup files will be deleted immediately.
 
-* 자동 백업을 백업 스토리지에 저장하는 기간을 설정합니다. 최대 730일까지 보관할 수 있으며, 자동 백업 보관 기간이 변경되면 보관 기간이 지난 자동 백업 파일은 바로 삭제됩니다.
+**Auto Backup Replication Region**
 
-**자동 백업 복제 리전**
+* Set the auto backup file to be replicated to backup storage in another region. Auto Backup replication regions are features for disaster recovery that replicate and manage auto backup files from the original region equally to the destination region. Replication occurs in the background at regular intervals. When you set up an auto backup replication region, you are charged with inter-regional replication traffic, and the destination region is charged additionally for backup storage usage.
 
-* 자동 백업 파일을 다른 리전의 백업 스토리지로 복제되도록 설정합니다. 자동 백업 복제 리전은 재해 복구(disaster recovery)를 위한 기능으로 원본 리전의 자동 백업파일을 대상 리전으로 동일하게 복제하고 관리합니다. 복제는 백그라운드에서 일정 주기마다 진행됩니다. 자동 백업 복제 리전을 설정하면 리전 간 복제 트래픽 비용이 청구되며, 대상 리전에 백업 스토리지 사용량에 대한 비용이 추가로 청구됩니다.
+**Number of Auto Backup Retries**
 
-**자동 백업 재시도 횟수**
+* You can set the auto backup to retry if it fails due to DML query load or for other various reasons. You can retry maximum 10 times. Depending on the auto backup run time setting, you might not try again even if there are still more retries.
 
-* DML 쿼리 부하 또는 여러 다양한 이유로 자동 백업이 실패한 경우 재시도하도록 설정할 수 있습니다. 최대 10회까지 재시도할 수 있습니다. 재시도 횟수가 남아 있더라도 자동 백업 수행 시간 설정에 따라 재시도하지 않을 수 있습니다.
+**Use Auto Backup Schedule**
 
-**자동 백업 스케줄 사용**
+* When using an auto backup schedule, backups are performed automatically at the auto backup performance time you set.
 
-* 자동 백업 스케줄 사용 시 설정한 자동 백업 수행 시간에 자동으로 백업이 수행됩니다.
+**Auto Backup Run Time**
 
-**자동 백업 수행 시간**
-
-* 백업이 자동으로 수행되는 시간을 설정할 수 있습니다. It consists of the backup start time, the backup window, and the backup retry expiration time. You can set the backup run time multiple times so that it does not overlap. Performs backup at any point in the backup window based on the start time of the backup. The backup window is not related to the total running time of the backup. Backup time is proportional to the size of the database and the service load. If the backup fails, retry the
-  backup based on the number of backups retries if it does not exceed the backup retries times.
+* Allows you set the time that the backup automatically takes place. It consists of the backup start time, the backup window, and the backup retry expiration time. You can set the backup run time multiple times so that it does not overlap. Performs backup at any point in the backup window based on the start time of the backup. The backup window is not related to the total running time of the backup. Backup time is proportional to the size of the database and the service load. If the backup fails, retry the backup based on the number of backups retries if it does not exceed the backup retries times.
 
 Auto backup name is given in the format of `{DB instance name} yyyy-MM-dd-HH-mm`.
 

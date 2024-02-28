@@ -215,7 +215,7 @@ DB 인스턴스의 DB 스키마 & 사용자 탭에서는 데이터베이스에 �
 
 #### DB 스키마 생성
 
-![db-instance-detail-schema_ko](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-schema_ko.png)
+![db-instance-detail-schema-en](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-schema_en.png)
 
 ❶ **생성** 버튼을 클릭하면 DB 스키마의 이름을 입력할 수 있는 팝업 창이 나타납니다.
 ❷ DB 스키마 이름을 입력한 후 **확인** 버튼을 클릭하여 DB 스키마를 생성할 수 있습니다.
@@ -632,7 +632,7 @@ master changes during failover and all binary logs are deleted. You can restore 
 
 #### 장애 조치 수동 제어
 
-예비 마스터에 변경 사항을 먼저 적용한 다음 그 추이를 관찰하고자 하거나, 정확한 시간에 장애 조치를 실행하고 싶을 때가 있습니다. 이러한 요구를 충족하기 위해, 웹 콘솔을 통해 장애 조치 시점을 직접 제어할 수 있습니다. 장애 조치 수동 제어를 선택하면 예비 마스터가 재시작된 후 웹 콘솔에 **장애 조치** 버튼이 표시됩니다. 이 버튼을 클릭하면 장애 조치가 실행되며, 최대 5일간 실행을 대기할 수 있습니다. 5일 이내에 장애 조치를 실행하지 않을 경우, 해당 작업은 자동으로 취소됩니다.
+예비 마스터에 변경 사항을 먼저 적용한 다음 그 추이를 관찰하고자 하거나, 정확한 시간에 장애 조치를 실행하고 싶을 때가 있습니다. 이러한 요구를 충족하기 위해, 웹 콘솔을 통해 장애 조치 시점을 직접 제어할 수 있습니다. 장애 조치 수동 제어를 선택하면 예비 마스터가 재시작된 후 ❶ 웹 콘솔에 **장애 조치** 버튼이 표시됩니다. 이 버튼을 클릭하면 장애 조치가 실행되며, 최대 5일간 실행을 대기할 수 있습니다. 5일 이내에 장애 조치를 실행하지 않을 경우, 해당 작업은 자동으로 취소됩니다.
 
 ![db-instance-ha-wait-manual-failover-en](https://static.toastoven.net/prod_rds/24.03.12/db-instance-ha-wait-manual-failover-en.png)
 
@@ -947,3 +947,63 @@ mysql> call mysql.tcrds_repl_slave_start;
 ```
 mysql> call mysql.tcrds_repl_init(); 
 ```
+
+## Appendix
+
+### Appendix 1. Guide for DB instance Migration for Hypervisor Maintenance
+
+NHN Cloud updates hypervisor software on a regular basis to enhance security and stability of its infrastructure services.
+Instances that are running on a target hypervisor for maintenance must be migrated to a hypervisor which is completed with maintenance.
+
+Migration of DB instance can start on a NHN Cloud console.
+Depending on database configuration, select a particular instance to migrate it as well, if its relevant DB instance (e.g. slave instance) is also the target of maintenance.
+Follow the guide as below, to use the migration service on console.
+Go to the project in which a DB instance for maintenance is located.
+
+#### 1. Check DB instances which are the maintenance targets.
+
+Those with the migration button next to name are the maintenance targets.
+
+![rds_planed_migration_0](https://static.toastoven.net/prod_rds/planned_migration_alarm/image0_en.png)
+
+Put a cursor on the migration button, and you can find its maintenance schedule.
+
+![rds_planed_migration_1](https://static.toastoven.net/prod_rds/planned_migration_alarm/image1_en.png)
+
+#### 2. Make sure you close any application programs that are running on the DB instance.
+
+It is recommended to take appropriate measures so as impact on relevant services can be limited.
+Nevertheless, if impact on service is inevitable, contact NHN Cloud Customer Center to be guided further.
+
+#### 3. Select a DB instance for maintenance, click migration, and click OK on window asking of migration.
+
+![rds_planed_migration_2](https://static.toastoven.net/prod_rds/planned_migration_alarm/image2_en.png)
+
+#### 4. Wait until database migration is over.
+
+If instance status remains the same, try 'Refresh'.
+
+![rds_planed_migration_3](https://static.toastoven.net/prod_rds/planned_migration_alarm/image3_en.png)
+
+While migration is underway, operation is not permitted.
+An abnormal closure of DB instance migration shall be automatically reported to administrator, and it such case, you'll be contacted by NHN Cloud.
+
+### Appendix 2. Configuration guide for using Federated Storage Engine with RDS
+
+When using Federated Storage Engine, make sure you consider the following.
+
+#### For configuration using RDS as a local node
+
+* Make sure you need to allow the outbound direction to remote nodes.
+  * DB 보안 그룹에서 규칙을 추가할 수 있습니다.
+  * 자세한 사항은 [DB 보안 그룹](db-security-group/) 항목을 참고합니다.
+* When using a configuration that adds Read Only Slave to RDS that serves as a local node, you need to specify a federated table in replicate-ignore-table of DB Configuration.
+  * When configuring Read Only Slave, the federated table is also replicated so that Master and Read Only Slave look at the remote nodes together.
+  * In this case, the data input performed in Master is performed in the remote nodes according to the federated settings, and the same input is also performed in Read Only Slave, so replication may be suspended due to a duplicate key error, etc.
+  * Make sure you need to configure the settings of replicate-ignore-table so that Read Only Save does not replicate a federated table.
+
+#### For configuration using RDS as a remote node
+
+* Make sure you need to allow the inbound direction to local nodes.
+  * DB 보안 그룹에서 규칙을 추가할 수 있습니다.
+  * 자세한 사항은 [DB 보안 그룹](db-security-group/) 항목을 참고합니다.
