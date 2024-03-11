@@ -5,18 +5,18 @@
 DB instance is a concept that encompasses virtual equipment and installed MySQL, a unit of MySQL provided by RDS for MySQL.
 You do not have direct access to the operating system of the DB instance, but only to the database through the port you entered when you created the DB instance. The available port ranges have the following restrictions.
 
-* The available port range is between 3306 and 43306.
+- The available port range is between 3306 and 43306.
 
 The DB instance is identified by the customer-assigned name and the automatically assigned 32-byte ID.
 DB instance name has the following restrictions.
 
-* DB instance name must be unique by region.
-* DB instance name contains alphabets, numbers, and - _ between 1 and 100 characters. ,and the first character must be an alphabet.
+- DB instance name must be unique by region.
+- DB instance name contains alphabets, numbers, and - \_ between 1 and 100 characters. ,and the first character must be an alphabet.
 
 When creating DB instance, you must set up a user account and password, and there are following restrictions.
 
-* User account must be between 1 and 32 characters long.
-* Password must be between 4 and 16 characters long.
+- User account must be between 1 and 32 characters long.
+- Password must be between 4 and 16 characters long.
 
 ### Availability Zone
 
@@ -30,24 +30,24 @@ service availability. Network communication is possible between DB instances tha
 
 You can use the versions specified below.
 
-| Version      | Note                                                                                                              | 
-|--------------|-------------------------------------------------------------------------------------------------------------------| 
-| <strong>8.0</strong> ||
-| MySQL 8.0.35 |                                                                                                                   |
-| MySQL 8.0.34 |                                                                                                                   | 
-| MySQL 8.0.33 |                                                                                                                   |
-| MySQL 8.0.32 |                                                                                                                   |
-| MySQL 8.0.28 |                                                                                                                   | 
-| MySQL 8.0.23 |                                                                                                                   | 
-| MySQL 8.0.18 |                                                                                                                   | 
-| <strong>5.7</strong> ||
-| MySQL 5.7.37 |                                                                                                                   | 
-| MySQL 5.7.33 | You cannot restore DB instance with an external backup copy.                                                      | 
-| MySQL 5.7.26 |                                                                                                                   | 
-| MySQL 5.7.19 |                                                                                                                   | 
-| MySQL 5.7.15 |                                                                                                                   | 
-| <strong>5.6</strong> ||
-| MySQL 5.6.33 | Unable to create new DB instance. It only supports creating and restoring read replicas of existing DB instances. |
+| Version              | Note                                                                                                              |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| <strong>8.0</strong> |                                                                                                                   |
+| MySQL 8.0.35         |                                                                                                                   |
+| MySQL 8.0.34         |                                                                                                                   |
+| MySQL 8.0.33         |                                                                                                                   |
+| MySQL 8.0.32         |                                                                                                                   |
+| MySQL 8.0.28         |                                                                                                                   |
+| MySQL 8.0.23         |                                                                                                                   |
+| MySQL 8.0.18         |                                                                                                                   |
+| <strong>5.7</strong> |                                                                                                                   |
+| MySQL 5.7.37         |                                                                                                                   |
+| MySQL 5.7.33         | You cannot restore DB instance with an external backup copy.                                                      |
+| MySQL 5.7.26         |                                                                                                                   |
+| MySQL 5.7.19         |                                                                                                                   |
+| MySQL 5.7.15         |                                                                                                                   |
+| <strong>5.6</strong> |                                                                                                                   |
+| MySQL 5.6.33         | Unable to create new DB instance. It only supports creating and restoring read replicas of existing DB instances. |
 
 You can upgrade the version for DB engine by using the modification feature of the web consle after the engine is created.
 For more details, see [DB Engine](db-engine/).
@@ -57,11 +57,11 @@ For more details, see [DB Engine](db-engine/).
 DB instances have different CPU cores and memory capacity depending on the type.
 When you create DB instance, you must select the appropriate DB instance type accoring to database workload.
 
-| Type | Description                                                                                                                    | 
-|------|--------------------------------------------------------------------------------------------------------------------------------| 
-| m2   | Instance type that balances CPU and memory.                                                                                    | 
-| c2   | Instance type with high CPU performance.                                                                                       | 
-| r2   | Available when memory is busy compared to other resources.                                                                     | 
+| Type | Description                                                                                                                    |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------ |
+| m2   | Instance type that balances CPU and memory.                                                                                    |
+| c2   | Instance type with high CPU performance.                                                                                       |
+| r2   | Available when memory is busy compared to other resources.                                                                     |
 | x1   | Instance type that supports higher-end CPU and memory. Recommended for services or applications that require high performance. |
 
 The type of DB instance that you have already created can be easily changed through the web console.
@@ -88,36 +88,36 @@ The status of the DB instance consists of the following values and changes depen
 
 Tasks performed on DB instance consist of the following values and are initiated by web console operations or pre-specified automation deployments.
 
-| Task                     | Description              | 
-|--------------------------|--------------------------| 
-| APPLYING_PARAMETER_GROUP | applying parameter group | 
-| BACKING_UP               | backing up               | 
-| CANCELING                | canceling                | 
-| CREATING                 | creating                 | 
-| CREATING_SCHEMA          | creating DB schema       | 
-| CREATING_USER            | creating user            | 
-| DELETING                 | deleting                 | 
-| DELETING_SCHEMA          | deleting DB schema       | 
-| DELETING_USER            | deleting user            | 
-| EXPORTING_BACKUP         | exporting backup         | 
-| FAILING_OVER             | failing over             | 
-| MIGRATING                | migrating                | 
-| MODIFYING                | modifying                | 
-| NONE                     | none                     |
-| PREPARING                | preparing                | 
-| PROMOTING                | promoting                | 
-| PROMOTING_FORCIBLY       | force promoting          |
-| REBUILDING               | rebuilding               | 
-| REPAIRING                | repairing                | 
-| REPLICATING              | replicating              | 
-| RESTARTING               | restarting               | 
-| RESTARTING_FORCIBLY      | force restarting         | 
-| RESTORING                | restoring                | 
-| STARTING                 | starting                 | 
-| STOPPING                 | stopping                 | 
-| SYNCING_SCHEMA           | syncing DB schema        | 
-| SYNCING_USER             | syncing user             | 
-| UPDATING_USER            | updating user            |
+| Task                     | Description                       |
+| ------------------------ | --------------------------------- |
+| APPLYING_PARAMETER_GROUP | applying parameter group          |
+| BACKING_UP               | backing up                        |
+| CANCELING                | canceling                         |
+| CREATING                 | creating                          |
+| CREATING_SCHEMA          | creating DB schema                |
+| CREATING_USER            | creating user                     |
+| DELETING                 | deleting                          |
+| DELETING_SCHEMA          | deleting DB schema                |
+| DELETING_USER            | deleting user                     |
+| EXPORTING_BACKUP         | exporting backup                  |
+| FAILING_OVER             | failing over                      |
+| MIGRATING                | migrating                         |
+| MODIFYING                | modifying                         |
+| NONE                     | none                              |
+| PREPARING                | preparing                         |
+| PROMOTING                | promoting                         |
+| PROMOTING_FORCIBLY       | force promoting                   |
+| REBUILDING               | rebuilding                        |
+| REPAIRING                | repairing                         |
+| REPLICATING              | replicating                       |
+| RESTARTING               | restarting                        |
+| RESTARTING_FORCIBLY      | force restarting                  |
+| RESTORING                | restoring                         |
+| STARTING                 | starting                          |
+| STOPPING                 | stopping                          |
+| SYNCING_SCHEMA           | syncing DB schema                 |
+| SYNCING_USER             | syncing user                      |
+| UPDATING_USER            | updating user                     |
 | WAIT_MANUAL_CONTROL      | pending manul control of failover |
 
 > [Caution]
@@ -160,15 +160,15 @@ You can use a backup to create a new DB instance. If the DB instance and binary 
 
 When you create a DB instance, you can set default notifications. If setting default notifications, it will create a new notification group with the name `{DB instance name}-default` and will automatically set the notification items below. You can freely modify and delete alert groups that are created as default notification. For more details on notification group, see the [ notification group ](notification/).
 
-| Item                       | How to compare | Threshold value | Duration  | 
-|----------------------------|----------------|-----------------|-----------| 
-| CPU usage                  | &gt;=          | 80%             | 5 minutes | 
-| Storage remaining usage    | &lt;=          | 5,120MB         | 5 minutes | 
-| Database connection status | &lt;=          | 0               | 0 minutes | 
-| Storage usage              | &gt;=          | 95%             | 5 minutes | 
-| Data Storage defects       | &lt;=          | 0               | 0 minute  | 
-| Connection ratio           | &gt;=          | 85%             | 5 minutes | 
-| Memory usage               | &gt;=          | 90%             | 5 minutes | 
+| Item                       | How to compare | Threshold value | Duration  |
+| -------------------------- | -------------- | --------------- | --------- |
+| CPU usage                  | &gt;=          | 80%             | 5 minutes |
+| Storage remaining usage    | &lt;=          | 5,120MB         | 5 minutes |
+| Database connection status | &lt;=          | 0               | 0 minutes |
+| Storage usage              | &gt;=          | 95%             | 5 minutes |
+| Data Storage defects       | &lt;=          | 0               | 0 minute  |
+| Connection ratio           | &gt;=          | 85%             | 5 minutes |
+| Memory usage               | &gt;=          | 90%             | 5 minutes |
 | Slow query                 | &gt;=          | 60 counts/min   | 5 minutes |
 
 ### Stop DB Instance
@@ -176,7 +176,7 @@ When you create a DB instance, you can set default notifications. If setting def
 If you do not use DB instance for a certain period of time, but you do not want to delete it, you can stop it. The virtual appliance of the stopped DB instance is shut down and will not be available until restarted. DB instances in a stopped state are charged at the discounted rate for 90 days from the moment they are stopped, and at the regular rate after 90 days. Make sure to delete unused DB instances to avoid unnecessary charges.
 
 > [Note]
-> High availability DB instances, masters with read replicas, and read replicas cannot be stopped. 
+> High availability DB instances, masters with read replicas, and read replicas cannot be stopped.
 > If the DB instance is using Floating IP, the Floating IP pricing is charged whether it is stopped or not.
 
 ### Create Read Replica
@@ -184,16 +184,17 @@ If you do not use DB instance for a certain period of time, but you do not want 
 To improve read performance, you can create a read replica which can be used for read-only. You can create maximum five read replicas for one master. You cannot create a read replica of a read replica. We recommend that you make the read replica the same or higher specification as the master. Creating with low specifications may cause to delay replication.
 
 > [Caution]
-> When creating a read replica, the master's I/O performance may be lower than usual. 
+> When creating a read replica, the master's I/O performance may be lower than usual.
 > The time to create read replica can increase in proportion to the size of the master's database.
 
 > [Note]
 > Backup storage charge may occur as much as the binary log size required for the process of creating read replica.
 
 #### Create Read Replica on Subnet in Different Region
-  * When you connect a region peering between VPCs that exist in different regions, you can create a read replica on a subnet that belongs to a VPC in a different region.
-  * Even if region peering is connected, if the route settings are incorrect, read replica creation might fail or replication might stop.
-  * For more information about connecting to region peering, see [Region peering](https://docs.nhncloud.com/ko/Network/Peering%20Gateway/ko/console-guide/#_2).
+
+- When you connect a region peering between VPCs that exist in different regions, you can create a read replica on a subnet that belongs to a VPC in a different region.
+- Even if region peering is connected, if the route settings are incorrect, read replica creation might fail or replication might stop.
+- For more information about connecting to region peering, see [Region peering](https://docs.nhncloud.com/ko/Network/Peering%20Gateway/ko/console-guide/#_2).
 
 ### Promote Read Replica
 
@@ -207,8 +208,8 @@ Force promotion to the read replica's point-in-time data, regardless of the stat
 
 Read replicas can be stopped for several reasons. If the status of the read replica is `Replication stopped`, you must quickly determine the cause and perform normalization. If the ` Replication stopped` status persists for a long time, the replication delay will increase. If you do not have the binary log required for normalization, you must rebuild the read replica. The reason for replication stop can be determined by the `SHOW SLAVE STATUS` command in the read replica. If the value of `Last_Errno` is 1062, you can call the Procedure below until the error disappears.
 
-``` 
-mysql> CALL mysql.tcrds_repl_skip_repl_error(); 
+```
+mysql> CALL mysql.tcrds_repl_skip_repl_error();
 ```
 
 ### Rebuild Read Replica
@@ -243,8 +244,8 @@ When the parameters of parameter group associated with DB instance are modified,
 
 RDS for MySQL provides a feature to easily manage users who access the database through the web console. Users are created when you create a DB instance, and you can freely create, modify, or delete users in an already created DB instance. To this end, It is not allowed to create, modify, or delete users directly via queries in the database. Instead, you can grant permissions to users using predefined permission templates. The following permission templates can be granted to users.
 
-* **READ**
-  * You have permission to view.
+- **READ**
+  - You have permission to view.
 
 ```sql
 GRANT SELECT, SHOW VIEW, PROCESS, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO '{user_id}'@'{host}';
@@ -253,62 +254,63 @@ GRANT SELECT, EXECUTE ON `sys`.* TO '{user_id}'@'{host}';
 GRANT SELECT ON `performance_schema`.* TO '{user_id}'@'{host}';
 ```
 
-* **CRUD**
-  * Includes READ permission, and has permission to modify data.
+- **CRUD**
+  - Includes READ permission, and has permission to modify data.
 
 ```sql
 GRANT INSERT, UPDATE, DELETE, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE ON *.* TO '{user_id}'@'{host}';
 ```
 
-* **DDL**
-  * Includes CRUD permissions, and has permissions to execute DDL queries.
+- **DDL**
+  - Includes CRUD permissions, and has permissions to execute DDL queries.
 
 ```sql
 GRANT CREATE, DROP, INDEX, ALTER, CREATE VIEW, REFERENCES, EVENT, ALTER ROUTINE, CREATE ROUTINE, TRIGGER, RELOAD ON *.* TO '{user_id}'@'{host}';
 GRANT EXECUTE ON `mysql`.* TO '{user_id}'@'{host}';
 ```
 
-* **CUSTOM**
-  * When restoring a DB instance from an external database backup, all users that exist in the database are represented with the CUSTOM permission.
-  * You cannot check what permissions are in the CUSTOM permission template.
-  * If you change from one CUSTOM permission template to another permission template, you cannot change back to a CUSTOM permission template.
+- **CUSTOM**
+  - When restoring a DB instance from an external database backup, all users that exist in the database are represented with the CUSTOM permission.
+  - You cannot check what permissions are in the CUSTOM permission template.
+  - If you change from one CUSTOM permission template to another permission template, you cannot change back to a CUSTOM permission template.
 
 In MySQL 5.7.33 or higher, you can specify the authentication plugin and TLS Option when creating or changing users. If you change the authentication plugin, you must change the password as well. If you do not change the password, the existing password is used. Applicable authentication plugins by version are as follows.
 
-* Version 5.7
+- Version 5.7
 
-| Authentication Plugin | Description                                   |
-|---------|--------------------------------------|
-| NATIVE  | Authenticate using `mysql_native_password`. |
-| SHA256  | Authenticate using `sha256_password`.       |
+| Authentication Plugin | Description                                 |
+| --------------------- | ------------------------------------------- |
+| NATIVE                | Authenticate using `mysql_native_password`. |
+| SHA256                | Authenticate using `sha256_password`.       |
 
-* Version 8.0
+- Version 8.0
 
-| Authentication Plugin      | Description                                   |
-|--------------|--------------------------------------|
-| NATIVE       | Authenticate using `mysql_native_password`. |
-| CACHING_SHA2 | Authenticate using `caching_sha2_password`. |
+| Authentication Plugin | Description                                 |
+| --------------------- | ------------------------------------------- |
+| NATIVE                | Authenticate using `mysql_native_password`. |
+| CACHING_SHA2          | Authenticate using `caching_sha2_password`. |
 
 You can encrypt the connection between the client and the database by specifying the TLS Option.
 
-| TLS Option | Description                                                                 |
-|------------|--------------------------------------------------------------------|
-| NONE       | Encrypted connections are not applied.                                                |
-| SSL        | Encrypted connections are applied.                                                    |
+| TLS Option | Description                                                                                                                                              |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NONE       | Encrypted connections are not applied.                                                                                                                   |
+| SSL        | Encrypted connections are applied.                                                                                                                       |
 | X509       | An encrypted connection is applied and a certificate is required for access. The certificate required for access can be downloaded from the web console. |
 
 ### DB Schema & Direct User Control
 
 RDS for MySQL provides management features in the web console to make it easy to manage DB schemas and users, but it also provides the feature to set up direct user control. This can be set via the DB Schema & User Direct Control item on the Modify DB Instance screen in the web console.
-* With direct control, all currently created users are granted the following permissions
+
+- With direct control, all currently created users are granted the following permissions
 
 ```sql
 GRANT CREATE,DROP,LOCK TABLES,REFERENCES,EVENT,ALTER,INDEX,INSERT,SELECT,UPDATE,DELETE,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,EXECUTE,CREATE USER,PROCESS,RELOAD,REPLICATION SLAVE,REPLICATION CLIENT,SHOW DATABASES, CREATE TEMPORARY TABLES,TRIGGER ON *.* TO '{user_id}'@'{host}' WITH GRANT OPTION;
 ```
 
-직접 제어 사용 이후 다시 사용 안 함으로 변경했을 때 주의할 점
-* 기존에 부여했던 권한들을 회수하지 않습니다. 이때 명령어를 사용해 DB 스키마나 사용자를 추가한다면 웹 콘솔의 데이터와 정합성이 맞지 않을 수 있습니다.
-* 사용자에게 부여된 권한과 상관없이 데이터베이스에 존재하는 모든 사용자는 CUSTOM 권한으로 표현됩니다.
+Cautions when you enable direct control and then disable it again
+* Already granted permissions are not revoked. If you use the command to add DB schema or users at this time, the data in the web console may not match.
+* All users that exist in the database, regardless of the permissions granted to them, are represented by CUSTOM permissions.
 
 ## High Availability DB instances
 
@@ -361,12 +363,12 @@ If recovery of a failed over master fails and data correction is required, you c
 
 For high-availability DB instances, when performing an action that accompanies restart, you can choose whether to restart with failover, and the tasks are as follows.
 
-* Restart DB instance
-* Change DB instance type
-* Change parameter group
-* When parameters that require a restart have changed
-* Reflect parameter group changes
-* Change data storage size
+- Restart DB instance
+- Change DB instance type
+- Change parameter group
+- When parameters that require a restart have changed
+- Reflect parameter group changes
+- Change data storage size
 
 When you restart with failover, the candidate master is restarted first. Failover will then promote the candidate master to the master, and the existing master will serve as a candidate master. Upon promotion, a record of the internal domain for access changes from master to candidate master, hence no changes to the application are required. The promoted master takes over all automatic backups of the previous master. Point-in-time restoration using existing backups is not supported because the
 master changes during failover and all binary logs are deleted. You can restore point-in-time from the time the new backup was performed on the promoted master.
@@ -382,13 +384,13 @@ master changes during failover and all binary logs are deleted. You can restore 
 You can temporarily stop the high availability feature in situations where temporary interruption of connectivity or high load is expected. If the high availability feature is paused, it does not detect failures, and therefore does not fail. Even if a task that requires a restart while the high availability feature is paused do not resume the paused high availability feature. Data replication occurs normal when high availability is paused, but we do not recommend that you pause for a long time
 as no failures are to be detected.
 
-### 예비 마스터 승격
+### Promote Candidate Master
 
-예비 마스터도 읽기 복제본과 마찬가지로 마스터와의 복제 관계를 끊고 마스터로 승격시킬 수 있습니다. 고가용성을 해제하고 읽기 복제본으로 변경 후, 읽기 복제본 승격과 동일한 작업을 진행합니다. 승격하려는 예비 마스터와 마스터 사이에 복제 지연이 있는 경우, 해당 지연이 없어질 때까지 승격되지 않습니다.
+Just like a read replica, a candidate master can be promoted to master by breaking the replication relationship with the master. After disabling high availability and changing to a read replica, proceed with the same actions as promoting a read replica. If there is a replication delay between the candidate master you are promoting and the master, it will not be promoted until the delay is eliminated.
 
-### 예비 마스터 강제 승격
+### Force Promote Candidate Master
 
-마스터의 상태와 상관없이 예비 마스터의 현재 시점 데이터로 강제 승격합니다.
+Force promote to the current point-in-time data of the candidate master, regardless of the master status.
 
 ## MySQL Procedure
 
@@ -396,52 +398,52 @@ RDS for MySQL provides its own procedures for performing some of the features th
 
 ### tcrds_active_process
 
-* Retrieves queries in the Processlist that are in the ACTIVE state, not the Sleep state.
-* The execution times are printed in the chronological order, and the query contents (SQL) are only printed maximum 100 digits.
+- Retrieves queries in the Processlist that are in the ACTIVE state, not the Sleep state.
+- The execution times are printed in the chronological order, and the query contents (SQL) are only printed maximum 100 digits.
 
-``` 
+```
 mysql> CALL mysql.tcrds_active_process();
 ```
 
 ### tcrds_process_kill
 
-* Forces to end a specific process.
-* The process ID to be terminated can be checked in information_schema, you can use the tcrds_active_process and tcrds_current_lock procedures to refer to the information about the process.
+- Forces to end a specific process.
+- The process ID to be terminated can be checked in information_schema, you can use the tcrds_active_process and tcrds_current_lock procedures to refer to the information about the process.
 
-``` 
-mysql> CALL mysql.tcrds_process_kill(processlist_id ); 
+```
+mysql> CALL mysql.tcrds_process_kill(processlist_id );
 ```
 
 ### tcrds_current_lock
 
-* Checks the processes currently waiting for a lock and the process information occupying the lock.
-* (w) Process information that column information waits to obtain locks
-* (w) Process information that column information waits to obtain locks
-* To force end the process occupying a lock , after checking the (B) PROCESS column, perform call tcrds_process_kill(process_id).
+- Checks the processes currently waiting for a lock and the process information occupying the lock.
+- (w) Process information that column information waits to obtain locks
+- (w) Process information that column information waits to obtain locks
+- To force end the process occupying a lock , after checking the (B) PROCESS column, perform call tcrds_process_kill(process_id).
 
-``` 
+```
 mysql> CALL mysql.tcrds_current_lock();
 ```
 
 ### tcrds_repl_changemaster
 
-* Imports external MySQL DBs into NHN Cloud RDS using replication.
-* **Create Replica** on the console can be used to configure replication of NHN Cloud RDS.
-
-``` 
-mysql> CALL mysql. tcrds_repl_changemaster (master_instance_ip, master_instance_port, user_id_for_replication, password_for_replication_user, MASTER_LOG_FILE, MASTER_LOG_POS); 
-```
-
-* Parameter description
-    * master_instance_ip: IP of replication target (Master) server
-    * master_instance_port: MySQL Port on the replication target (Master) Server
-    * user_id_for_replication: Account for replication to access MySQL on the replication target (Master) server
-    * password_for_replication_user: Account password for replication
-    * MASTER_LOG_FILE: The binary log file name of the replication target (Master)
-    * MASTER_LOG_POS: The binary log position of the replication target (Master)
+- Imports external MySQL DBs into NHN Cloud RDS using replication.
+- **Create Replica** on the console can be used to configure replication of NHN Cloud RDS.
 
 ```
-ex) call mysql.tcrds_repl_changemaster('10.162.1.1',10000,'db_repl','password','mysql-bin.000001',4); 
+mysql> CALL mysql. tcrds_repl_changemaster (master_instance_ip, master_instance_port, user_id_for_replication, password_for_replication_user, MASTER_LOG_FILE, MASTER_LOG_POS);
+```
+
+- Parameter description
+  - master_instance_ip: IP of replication target (Master) server
+  - master_instance_port: MySQL Port on the replication target (Master) Server
+  - user_id_for_replication: Account for replication to access MySQL on the replication target (Master) server
+  - password_for_replication_user: Account password for replication
+  - MASTER_LOG_FILE: The binary log file name of the replication target (Master)
+  - MASTER_LOG_POS: The binary log position of the replication target (Master)
+
+```
+ex) call mysql.tcrds_repl_changemaster('10.162.1.1',10000,'db_repl','password','mysql-bin.000001',4);
 ```
 
 > [Caution]
@@ -449,52 +451,53 @@ ex) call mysql.tcrds_repl_changemaster('10.162.1.1',10000,'db_repl','password','
 
 ### tcrds_repl_init
 
-* Initializes MySQL replication information.
+- Initializes MySQL replication information.
 
-``` 
-mysql> CALL mysql.tcrds_repl_init(); 
+```
+mysql> CALL mysql.tcrds_repl_init();
 ```
 
 ### tcrds_repl_slave_stop
 
-* Stops MySQL replication.
+- Stops MySQL replication.
 
-``` 
-mysql> CALL mysql.tcrds_repl_slave_stop(); 
+```
+mysql> CALL mysql.tcrds_repl_slave_stop();
 ```
 
 ### tcrds_repl_slave_start
 
-* Starts MySQL replication.
+- Starts MySQL replication.
 
-``` 
+```
 mysql> CALL mysql.tcrds_repl_slave_start();
 
 ```
 
 ### tcrds_repl_skip_repl_error
 
-* Performs SQL_SLAVE_SKIP_COUNTER=1. The following Duplicate key errors can be resolved by running the tcrds_repl_skip_repl_error procedure.
-* `MySQL error code 1062: 'Duplicate entry ? for key ?'`
+- Performs SQL_SLAVE_SKIP_COUNTER=1. The following Duplicate key errors can be resolved by running the tcrds_repl_skip_repl_error procedure.
+- `MySQL error code 1062: 'Duplicate entry ? for key ?'`
 
-``` 
-mysql> CALL mysql.tcrds_repl_skip_repl_error(); 
+```
+mysql> CALL mysql.tcrds_repl_skip_repl_error();
 ```
 
 ### tcrds_repl_next_changemaster
 
-* Changes the replication information in order to read the following binary log on the Master.
-* The following Duplicate errors can be resolved by running the tcrds_repl_next_changemaster procedure.
-* example) MySQL error code 1236 (ER_MASTER_FATAL_ERROR_READING_BINLOG): Got fatal error from master when reading data from binary log
+- Changes the replication information in order to read the following binary log on the Master.
+- The following Duplicate errors can be resolved by running the tcrds_repl_next_changemaster procedure.
+- example) MySQL error code 1236 (ER_MASTER_FATAL_ERROR_READING_BINLOG): Got fatal error from master when reading data from binary log
 
-``` 
-mysql> CALL mysql.tcrds_repl_next_changemaster(); 
+```
+mysql> CALL mysql.tcrds_repl_next_changemaster();
 ```
 
 ### tcrds_innodb_monitor_reset
-* A procedure to run the innodb_monitor_reset variables, which reset the counter in the information_schema.INNODB_METRICS table to zero.
-* Execute `SET GLOBAL innodb_monitor_reset = '{counter-name|module_name|pattern|all}';`.
-* innodb_monitor_enable, innodb_monitor_disable are provided as RDS parameters.
+
+- A procedure to run the innodb_monitor_reset variables, which reset the counter in the information_schema.INNODB_METRICS table to zero.
+- Execute `SET GLOBAL innodb_monitor_reset = '{counter-name|module_name|pattern|all}';`.
+- innodb_monitor_enable, innodb_monitor_disable are provided as RDS parameters.
 
 ```
 mysql> CALL mysql.tcrds_innodb_monitor_reset('{counter-name|module_name|pattern|all}');
@@ -506,9 +509,10 @@ CALL mysql.tcrds_innodb_monitor_reset('module_dml');
 ```
 
 ### tcrds_innodb_monitor_reset_all
-* A procedure to run innodb_monitor_reset_all variables that reset the value of counter.
-* To use innodb_monitor_reset_all, the counter must be in the disable state.
-* Execute `SET GLOBAL innodb_monitor_reset_all = '{counter-name|module_name|pattern|all}';`.
+
+- A procedure to run innodb_monitor_reset_all variables that reset the value of counter.
+- To use innodb_monitor_reset_all, the counter must be in the disable state.
+- Execute `SET GLOBAL innodb_monitor_reset_all = '{counter-name|module_name|pattern|all}';`.
 
 ```
 mysql> CALL mysql.tcrds_innodb_monitor_reset_all('{counter-name|module_name|pattern|all}');
@@ -516,92 +520,92 @@ mysql> CALL mysql.tcrds_innodb_monitor_reset_all('{counter-name|module_name|patt
 
 ## Data Migration
 
-* RDS can be exported as data to or imported from NHN Cloud RDS using mysqldump.
-* The mysqldump utility is provided by default when mysql is installed.
+- RDS can be exported as data to or imported from NHN Cloud RDS using mysqldump.
+- The mysqldump utility is provided by default when mysql is installed.
 
 ### Export using mysqldump
 
-* Prepare and use an instance of NHN Cloud RDS.
-* Check that the external instance on which you want to store the data to be exported, or the computer on which the local client is installed, has sufficient capacity.
-* If you need to export data outside of NHN Cloud, create Floating IP and connect it to the RDS instance where you want to export the data.
-* Export data externally using the mysqldump command below.
+- Prepare and use an instance of NHN Cloud RDS.
+- Check that the external instance on which you want to store the data to be exported, or the computer on which the local client is installed, has sufficient capacity.
+- If you need to export data outside of NHN Cloud, create Floating IP and connect it to the RDS instance where you want to export the data.
+- Export data externally using the mysqldump command below.
 
 #### When exporting files
 
-``` 
-mysqldump -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name} 
+```
+mysqldump -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
 #### Export to mysqldb outside NHN Cloud RDS.
 
-``` 
-mysqldump -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --routines --events --triggers --databases {database_name1, database_name2, ...} | mysql -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port} 
+```
+mysqldump -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --routines --events --triggers --databases {database_name1, database_name2, ...} | mysql -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port}
 ```
 
 ### Export using mysqldump
 
-* Prepare db outside NHN Cloud RDS to import data.
-* Check that the NHN Cloud RDS instance that you import has sufficient capacity.
-* Create a Floating IP to connect to the NHN Cloud RDS instance.
-* Import data from outside using the mysqldump command below.
+- Prepare db outside NHN Cloud RDS to import data.
+- Check that the NHN Cloud RDS instance that you import has sufficient capacity.
+- Create a Floating IP to connect to the NHN Cloud RDS instance.
+- Import data from outside using the mysqldump command below.
 
-``` 
-mysqldump -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port} --single-transaction --set-gtid-purged=off --routines --events --triggers --databases {database_name1, database_name2, ...} | mysql -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} 
+```
+mysqldump -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port} --single-transaction --set-gtid-purged=off --routines --events --triggers --databases {database_name1, database_name2, ...} | mysql -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port}
 ```
 
 #### When `ERROR 1227` occurs during data importing
 
-* `ERROR 1227` occurs when a stored object (trigger, view, function, or event) in the mysqldump file has DEFINER definition.
-* To resolve this, delete the `DEFINER` part of the mysqldump file and proceed.
+- `ERROR 1227` occurs when a stored object (trigger, view, function, or event) in the mysqldump file has DEFINER definition.
+- To resolve this, delete the `DEFINER` part of the mysqldump file and proceed.
 
 #### When `ERROR 1418` occurs during data importing
 
-* `ERROR 1418` occurs when the function declaration in the mysqldump file does not contain NO SQL, READS SQL DATA, or DETERMINISTIC and binary logging is enabled.
-    * For detailed information, refer to [The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html) MySQL document.
-* To resolve this, Parameter value of `log_bin_trust_function_creators` of DB instance to which you want to apply mysqldump file should be changed to `1`.
+- `ERROR 1418` occurs when the function declaration in the mysqldump file does not contain NO SQL, READS SQL DATA, or DETERMINISTIC and binary logging is enabled.
+  - For detailed information, refer to [The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html) MySQL document.
+- To resolve this, Parameter value of `log_bin_trust_function_creators` of DB instance to which you want to apply mysqldump file should be changed to `1`.
 
 ### Export by using replication
 
-* Replication allows you export data from NHN Cloud RDS to external DB.
-* The external db version has to be the same as or later than the version of NHN Cloud RDS.
-* Prepare an instance of NHN Cloud RDS Master or Read Only Slave to export data.
-* Create Floating IP to connect to NHN Cloud RDS instances to export data.
-* Create Floating IP to connect to NHN Cloud RDS instances to export data.
-* When exporting from Master RDS instance.
+- Replication allows you export data from NHN Cloud RDS to external DB.
+- The external db version has to be the same as or later than the version of NHN Cloud RDS.
+- Prepare an instance of NHN Cloud RDS Master or Read Only Slave to export data.
+- Create Floating IP to connect to NHN Cloud RDS instances to export data.
+- Create Floating IP to connect to NHN Cloud RDS instances to export data.
+- When exporting from Master RDS instance.
 
-``` 
+```
 mysqldump -h{rds_master_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --master-data=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
- ```
-
-* When exporting from Read Only Slave RDS.
-
-``` 
-mysqldump -h{rds_read_only_slave_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --dump-slave=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name} 
 ```
 
-* Open the backed up file and record the MASTER_LOG_FILE and MASTER_LOG_POS written in the annotation separately.
-* Check that the external local client or computer on which db is installed has sufficient capacity to back up data from the NHN Cloud RDS instance.
-* Add the following options to my.cnf (for winodws my.ini) file in external DB.
-* For server-id, enter a value different from the server-id of the DB Configuration entry for the NHN Cloud RDS instance.
+- When exporting from Read Only Slave RDS.
 
-``` 
-... 
-[mysqld] 
-... 
-server-id={server_id} 
-replicate-ignore-db=rds_maintenance 
-... 
+```
+mysqldump -h{rds_read_only_slave_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --dump-slave=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
-* Restart external DB.
-* Enter the backed up file into an external DB using the command below.
+- Open the backed up file and record the MASTER_LOG_FILE and MASTER_LOG_POS written in the annotation separately.
+- Check that the external local client or computer on which db is installed has sufficient capacity to back up data from the NHN Cloud RDS instance.
+- Add the following options to my.cnf (for winodws my.ini) file in external DB.
+- For server-id, enter a value different from the server-id of the DB Configuration entry for the NHN Cloud RDS instance.
 
-``` 
-mysql -h{external_db_host} -u{exteranl_db_id} -p{external_db_password} --port={exteranl_db_port} < {local_path_and_file_name} 
+```
+...
+[mysqld]
+...
+server-id={server_id}
+replicate-ignore-db=rds_maintenance
+...
 ```
 
-* Create an account for replication on the NHN Cloud RDS instance.
-* Before setting up a new replication, run the query below to initialize existing replication information that may exist. When you run RESET SLAVE, the existing replication information is initialized.
+- Restart external DB.
+- Enter the backed up file into an external DB using the command below.
+
+```
+mysql -h{external_db_host} -u{exteranl_db_id} -p{external_db_password} --port={exteranl_db_port} < {local_path_and_file_name}
+```
+
+- Create an account for replication on the NHN Cloud RDS instance.
+- Before setting up a new replication, run the query below to initialize existing replication information that may exist. When you run RESET SLAVE, the existing replication information is initialized.
 
 ```
  STOP SLAVE;
@@ -609,7 +613,7 @@ mysql -h{external_db_host} -u{exteranl_db_id} -p{external_db_password} --port={e
 RESET SLAVE;
 ```
 
-* Run the query on the external DB as shown below, using the account information to be used for replication and the MASTER_LOG_FILE and MSATER_LOG_POS that recorded earlier.
+- Run the query on the external DB as shown below, using the account information to be used for replication and the MASTER_LOG_FILE and MSATER_LOG_POS that recorded earlier.
 
 ```
  CHANGE MASTER TO master_host = '{rds_master_instance_floating_ip}', master_user='{user_id_for_replication}', master_password='{password_forreplication_user}', master_port ={rds_master_instance_port}, master_log_file ='{MASTER_LOG_FILE}', master_log_pos = {MASTER_LOG_POS};
@@ -617,71 +621,71 @@ RESET SLAVE;
 START SLAVE;
 ```
 
-* If the source data of the external DB and the NHN Cloud RDS instance are identical, use the STOP SLAVE command to the external DB to terminate the replication
+- If the source data of the external DB and the NHN Cloud RDS instance are identical, use the STOP SLAVE command to the external DB to terminate the replication
 
 ### Import with Replication
 
-* You can import external DBs into NHN Cloud RDS using replication.
-* NHN Cloud RDS version has to be the same as or later than the external DB version.
-* Connect the data to an external MySQL instance to which it is exported.
-* Use the command below to back up data from an external MySQL instance.
-* When importing from an external MySQL instance (master)
-
-``` 
-mysqldump -h{master_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --master-data=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name} 
-```
-
-* When importing from an external MySQL instance (slave)
-
-``` 
-mysqldump -h{slave_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --dump-slave=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name} 
-```
-
-* Open the backed up file and record the MASTER_LOG_FILE and MASTER_LOG_POS in the annotation separately.
-* Check that you have enough space on the client or computer to back up data from the NHN Cloud RDS instance.
-* Add the following options to my.cnf (for winodws my.ini) file in external DB.
-* For server-id, enter a value different from the server-id of the DB Configuration entry for the NHN Cloud RDS instance.
+- You can import external DBs into NHN Cloud RDS using replication.
+- NHN Cloud RDS version has to be the same as or later than the external DB version.
+- Connect the data to an external MySQL instance to which it is exported.
+- Use the command below to back up data from an external MySQL instance.
+- When importing from an external MySQL instance (master)
 
 ```
- ... 
- [mysqld] 
- ... 
- server-id={server_id} 
- replicate-ignore-db=rds_maintenance 
- ... 
- ```
-
-* Restart external DB.
-* As importing over an external network can take a long time,
-* We recommend that you create an internal NHN Cloud Image, copy the backup file, and import it into NHN Cloud.
-* Enter the backed up file into NHN Cloud RDS with the command below.
-* Replication configuration does not support DNS, so convert to IP and run.
-
-``` 
-mysql -h{rds_master_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} < {local_path_and_file_name} 
+mysqldump -h{master_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --master-data=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
-* Create an account for replication on an external MySQL instance.
+- When importing from an external MySQL instance (slave)
 
-``` 
-mysql> CREATE USER 'user_id_for_replication'@'{external_db_host}' IDENTIFIED BY '<password_forreplication_user>'; mysql> GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'user_id_for_replication'@'{external_db_host}'; 
+```
+mysqldump -h{slave_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --dump-slave=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
-* Run a query on NHN Cloud RDS as follows,
+- Open the backed up file and record the MASTER_LOG_FILE and MASTER_LOG_POS in the annotation separately.
+- Check that you have enough space on the client or computer to back up data from the NHN Cloud RDS instance.
+- Add the following options to my.cnf (for winodws my.ini) file in external DB.
+- For server-id, enter a value different from the server-id of the DB Configuration entry for the NHN Cloud RDS instance.
+
+```
+ ...
+ [mysqld]
+ ...
+ server-id={server_id}
+ replicate-ignore-db=rds_maintenance
+ ...
+```
+
+- Restart external DB.
+- As importing over an external network can take a long time,
+- We recommend that you create an internal NHN Cloud Image, copy the backup file, and import it into NHN Cloud.
+- Enter the backed up file into NHN Cloud RDS with the command below.
+- Replication configuration does not support DNS, so convert to IP and run.
+
+```
+mysql -h{rds_master_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port} < {local_path_and_file_name}
+```
+
+- Create an account for replication on an external MySQL instance.
+
+```
+mysql> CREATE USER 'user_id_for_replication'@'{external_db_host}' IDENTIFIED BY '<password_forreplication_user>'; mysql> GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'user_id_for_replication'@'{external_db_host}';
+```
+
+- Run a query on NHN Cloud RDS as follows,
   using the account information to be used for replication and the MASTER_LOG_FILE and MSATER_LOG_POS that recorded earlier.
 
-``` 
-mysql> call mysql.tcrds_repl_changemaster ('rds_master_instance_floating_ip',rds_master_instance_port,'user_id_for_replication','password_forreplication_user','MASTER_LOG_FILE',MASTER_LOG_POS ); 
+```
+mysql> call mysql.tcrds_repl_changemaster ('rds_master_instance_floating_ip',rds_master_instance_port,'user_id_for_replication','password_forreplication_user','MASTER_LOG_FILE',MASTER_LOG_POS );
 ```
 
-* To start replication, run the procedure below.
-
-``` 
-mysql> call mysql.tcrds_repl_slave_start; 
-```
-
-* When the source data of the external DB and NHN Cloud RDS instance become the same, use the command below to end the replication.
+- To start replication, run the procedure below.
 
 ```
-mysql> call mysql.tcrds_repl_init(); 
+mysql> call mysql.tcrds_repl_slave_start;
+```
+
+- When the source data of the external DB and NHN Cloud RDS instance become the same, use the command below to end the replication.
+
+```
+mysql> call mysql.tcrds_repl_init();
 ```
