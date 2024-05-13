@@ -2,16 +2,16 @@
 
 ## DB Instance
 
-DB instance is a concept that encompasses virtual equipment and installed MySQL, a unit of MySQL provided by RDS for MySQL. 
-You cannot directly access the operating system of DB instance, but only the database through the port you entered when creating the DB instance. The range of ports available has the following restrictions.
+DB instance is a concept that encompasses virtual equipment and installed MySQL, a unit of MySQL provided by RDS for MySQL.
+You do not have direct access to the operating system of the DB instance, but only to the database through the port you entered when you created the DB instance. The available port ranges have the following restrictions.
 
 * The available port range is between 3306 and 43306.
 
-DB instance is identified by the name given by the customer and the automatically assigned 32-byte ID. 
+The DB instance is identified by the customer-assigned name and the automatically assigned 32-byte ID.
 DB instance name has the following restrictions.
 
-* DB instance names have to be unique by region.
-* DB instance name can only contain alphabetic characters, numbers between 1 and 100 and some symbols (-, \_, .) and the first letter can only contain alphabetic characters.
+* DB instance name must be unique by region.
+* DB instance name contains alphabets, numbers, and - _ between 1 and 100 characters. ,and the first character must be an alphabet.
 
 ## Create DB Instance
 
@@ -19,10 +19,10 @@ You can create DB instance using the settings below.
 
 ### Availability Zone
 
-NHN Cloud has divided the entire system into several availability areas to prepare for failures caused by physical hardware problems. Storage systems, network switches, top surface and power supplies are all configured separately for each availability area. Disruption within one availability domain does not affect another, increasing the availability of service as a whole. You can further increase the availability of services if you deploy DB instances across multiple availability zones. Network communication is possible between DB instances created across multiple availability zones and no network usage costs are incurred.
+NHN Cloud has divided the entire system into several availability zones to prepare for failures caused by physical hardware problems. These availability zones are storage systems, network switches, top surfaces, and power supplies, which are all configured separately for each zone. Failure within one availability zone does not affect other availability zones, increasing the availability of the entire service. Deploying DB instances across multiple availability zones can further increase the service availability. Network communication is possible between DB instances that are scattered across multiple availability zones, and there is no network usage charge.
 
 > [Caution] 
-You cannot change the availability zone of DB instance that you have already created.
+> You cannot change the availability zone of DB instance that you have already created.
 
 ### DB Engine
 
@@ -55,17 +55,17 @@ Details about DB engine can be found in [DB Engine](db-engine/).
 DB instances have different CPU cores and memory capacity depending on the type. 
 When creating DB instance, you must select appropriate DB instance type according to database workload.
 
-| Type | Description                                                        |
-|----|-----------------------------------------------------------|
-| m2 | Type that balances CPU and memory.                                |
-| c2 | Instance type with high CPU performance set.                               |
-| r2 | Available when more memory is used more than other resources.                     |
-| x1 | A flavor that supports high-end CPU and memory. Recommended for services or applications that require high performance. |
+| Type | Description                                                                                                                    | 
+|------|--------------------------------------------------------------------------------------------------------------------------------| 
+| m2   | Instance type that balances CPU and memory.                                                                                    | 
+| c2   | Instance type with high CPU performance.                                                                                       | 
+| r2   | Available when memory is busy compared to other resources.                                                                     | 
+| x1   | Instance type that supports higher-end CPU and memory. Recommended for services or applications that require high performance. |
 
 The type of DB instance that you have already created can be easily changed through the web console.
 
-> [Caution] 
-When changing the type of DB instance that you have already created, the DB instance shuts down, resulting in an interruption of a few minutes.
+> [Caution]
+> If you change the type of DB instance that you have already created, the DB instance will be terminated, resulting in a few minutes of downtime.
 
 ### Data Storage
 
@@ -89,18 +89,18 @@ Because the following tasks use the I/O capacity of data storage, the performanc
 
 ### High Availability
 
-A high availability DB instance increases availability and data durability and provides a failure-tolerant database. A high availability DB instance consists of a master and a candidate master and is created in different availability zones. Candidate Master is a failure-ready DB instance that is not normally available. For high availability DB instances, backups are performed on candidate master, which avoids performance degradation caused by backups. Several features provided by a high availability DB instance can be found in [high availability DB instance](db-instance/#_1).
+High availability DB instances increase availability, data durability, and provide fault tolerant databases. High availability DB instances consist of master and candidate master and are created in different availability zones. Candidate master is a DB instance for failover and is not normally available. For high availability DB instances, backups are performed on candidate master, which avoids performance degradation caused by backups. Several features provided by a high availability DB instance can be found in [High Availability DB Instance](db-instance/#_1).
 
 ### Network
 
-You have to select a VPC sub-net to connect to DB instance. You can communicate without a separate floating IP between instances of Compute service connected to the same subnet and you will not be charged for network traffic. DB instances block all network access by default, so you must apply DB security groups if you want to connect.
+When create DB instance, you have to select the VPC subnet to connect to. You can communicate without a separate floating IP between instances of Compute service connected to the same subnet and you will not be charged for network traffic. DB instances block all network access by default, so you must apply DB security groups if you want to connect.
 
-> [Caution] 
-You cannot change the sub-net of DB instance that you have already created.
+> [Caution]
+> You cannot change the subnet of DB instance that you have already created.
 
 ### Floating IP
 
-To access DB instance from outside, you must connect a floating IP to DB instance. Floating IPs can only be created when connecting sub-nets to which Internet Gateways are connected. Floating IPs are charged at the same time as they are being used, apart from this, it is charged separately when traffic is generated in the Internet direction through floating IP.
+To access DB instance from the outside, you must connect the floating IP to DB instance. You can create a floating IP only if you connect the subnet to which the Internet Gateway is connected. Floating IP is charged upon use, and separately, if traffic is directed to the Internet through floating IP, it is charged separately.
 
 ### Parameter group
 
@@ -108,15 +108,16 @@ A parameter group is a set of parameters that allow you to set up a database ins
 
 ### DB Security Group
 
-DB security groups are used to restrict access against external break-in. You can allow access to a specific port range or database port for incoming and outgoing traffic. You can apply multiple DB security groups to DB instances. For a detailed description of DB security groups, refer to [DB security group](db-security-group/).
+DB security groups are used to restrict access in case of external intrusion. You can allow access to specific port ranges or database ports for incoming and outgoing traffic. You can apply multiple DB security groups to DB instance. For more details on DB security groups, see the [DB security groups](db-security-group/).
 
 ### Backup
 
-You can set up the DB instance's database to be backed up periodically or you can create backups at any time through the web console. Performance may be degraded while a backup is taking place. We recommend that you back up during low-load hours of service so that it doesn't affect service. If you don't want to see performance degradation due to backups, you can use high availability configurations or perform backups from read replicas. Backup files are stored on internal backup storage and charged for backup capacity. If necessary, you can export them to user object storage in NHN Cloud. To prepare for unexpected failures, we recommend that you set up backups periodically. Refer to [Backup and Restore](backup-and-restore/) for a detailed description of backups.
+You can set up periodic backups of the databases in your DB instance, or you can create backups at any time through the web console. Performance may degrade during backups. To avoid affecting service, it is better to perform back up at a time when the service is under low load. If you do not want the backup to degrade performance, you can use a high-availability configuration or perform backups from read replica. Backup files are stored on internal object storage and are charged based on the
+size of backup storage. You can export to user object storage in NHN Cloud if necessary. To prepare for unexpected failures, we recommend that you set up backups to conduct periodically. For more details on backup, see [Backup and Restore](backup-and-restore/).
 
-### Default notification
+### Default Notification
 
-You can set default notifications when creating a DB instance. Setting default notifications creates a new notification group with `{DB instance name}-default` name and automatically sets the notification items below. Notification groups created as default notifications can be modified and deleted freely. For a detailed description of the notification groups, refer to [Notification Group](notification/).
+When you create a DB instance, you can set default notifications. If setting default notifications, it will create a new notification group with the name `{DB instance name}-default` and will automatically set the notification items below. You can freely modify and delete alert groups that are created as default notification. For more details on notification group, see the [ notification group ](notification/).
 
 | Item                         | Comparison Method | Threshold value           | Duration |
 |----------------------------|-------|---------------|-------|
@@ -209,7 +210,7 @@ Click on **Download** to charge Internet traffic as the size of the log file.
 
 ❹ For binary logs, you can download them in two forms. Click on **Import** and you will see a pop-up window where you can select the type of binary log.
 
-![db-instance-detail-log-bin_ko](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-log-bin_ko.png)
+![db-instance-detail-log-bin_en](https://static.toastoven.net/prod_rds/24.03.12/db-instance-detail-log-bin_en.png)
 
 ❺ Select to use the mysqlbinlog utility to convert the binary log into SQL file and then download it.
 
@@ -539,15 +540,16 @@ You can perform promotion operations from the same region's web console as the r
 
 Force promotion is processed based on current point-in-time data of the read replica, regardless of the state of the master or original region. Reproduction delays can result in data loss. Therefore, we do not recommend using this feature unless you are in a situation where you urgently need to put the read replica into service.
 
-### Stopping replication of read replications
+### Stop Replication of Read Replicas
 
-Read replicas can be interrupted for several reasons. If the state of the read replica is `Replication Stopped`, the cause should be quickly identified and normalized. ` Replication Stopped` state increases replication delay. If there is no binary log required for normalization, the read replica must be rebuilt. The reason for the stopped replication can be determined by the command `SHOW SLABE STATUS` in the read replica. If the value `Last_Errno` is 1062, you can call the below procedure until the error disappears. 
+Read replicas can be stopped for several reasons. If the status of the read replica is `Replication stopped`, you must quickly determine the cause and perform normalization. If the ` Replication stopped` status persists for a long time, the replication delay will increase. If you do not have the binary log required for normalization, you must rebuild the read replica. The reason for replication stop can be determined by the `SHOW SLAVE STATUS` command in the read replica. If the value
+of `Last_Errno` is 1062, you can call the Procedure below until the error disappears.
 
 ```
 mysql> CALL mysql.tcrds_repl_skip_repl_error();
 ```
 
-### Rebuilding Read Replica
+### Rebuild Read Replica
 
 If you can't resolve the replication issue of read replica, you can restore it to its normal state by rebuilding. This process deletes all databases in the read replica and rebuilds it anew based on the master database. During rebuilding, read replicas are unavailable to use. Rebuilding read replicas requires backup files and binary logs created with the Enable Table Lock option among DB instances in the replication group. If you don't have a backup file, refer to [Create Read Replica](./#_1) for actions and precautions.
 
@@ -591,52 +593,55 @@ Enabling Delete Protection protects DB instances from being accidentally deleted
 
 ❷ Change the Delete Protection settings and click on **Confirm**.
 
-## High Availability DB Instance
+## High Availability DB Instances
 
-High-availability DB instances increase availability and data durability, and provide a failure-tolerant database. High-availability DB instances consist of master, candidate master, and are created in different availability zones. The candidate master is DB instance against failure and it is not normally available. For high availability DB instances, backups are performed on the candidate master.
-
-> [Note] 
-For high availability DB instances, if you set to use MySQL query statement to force replication from another DB instance or from a master in external MySQL, high availability and some features do not work properly.
-
-### Detect Fail 
-
-Candidate master has a process to detect failures to periodically detect the status of the master. This detection cycle is called Ping interval and if four consecutive status checks fail, a failover action is taken. The shorter the ping interval, the more sensitive it is to the failure, and the longer the ping interval, the more insensitive it is to the failure. It is important to set the appropriate ping interval according to the service load.
+High availability DB instances increase availability, data durability, and provide fault tolerant databases. High availability DB instances consist of master and candidate master and are created in different availability zones. Candidate master is a DB instance for failover and is not normally available. For high availability DB instances, backups are performed on the sample master.
 
 > [Note] 
-If the master's data storage usage becomes full, the high availability monitoring process detects the failure and takes failover action.
+> For high availability DB instances, if you set to use MySQL query statement to force replication from another DB instance or from a master in external MySQL, high availability and some features do not work properly.
+
+### Failure Detection
+
+Candidate master has a process for detecting failures, which periodically detects the state of the master. This detection period is called ping interval and takes failover if four consecutive health checks fail. The shorter the ping interval, the more sensitive to the fault respond is, and the longer the ping interval, the less insensitive the fault respond is. It is important to set the appropriate ping interval for the service load accordingly.
+
+> [Note]
+> When the master's storage usage is full, the high availability monitoring process detects it as a failure and takes action, which you should be taken note of.
 
 ### Automatic Failover
 
-If the master's health check fails four times in a row, the master determines that the service is not available and automatically performs a failover action. To prevent split brain, disconnect all user security groups assigned to the failed master to block external access, and the candidate master takes over master’s role. A record in the internal domain for the connection changes from failed master to candidate master, so no application changes are required. When a failover action is completed, the type of failover master is changed to failover master, and the type of candidate master is changed to master. The failover does not take place until the failover master is restored or rebuilt. The promoted master succeeds all automatic backups of the failover master. If the master changes during the failover process, all binary logs are deleted, therefore, point-in-time restoration using existing backups is not supported. You can restore the point-in-time from the time when the newly backed up is performed on the promoted master. 
+When the candidate master fails the master's health check four times in a row, it determines that the master is unable to provide service and automatically performs a failover. In order to prevent split brains, disconnect all user security groups assigned to the failed master to block external connections, and the preliminary master will take over the role of the master. A record in the internal domain for access are changed from the failed master to the preliminary master, so no changes to the
+application are required. When failover is completed, the type of failed over master changes to the failed over master and the type of candidate master changes to the master. No failover is performed until the failed over master is recovered or rebuilt. Promoted master takes over all automatic backups of the failover master. Point-in-time restoration using existing backups is not supported because the master changes during failover and all binary logs are deleted. You can restore point-in-time
+from the time the new backup was performed on the promoted master. 
 
-> [Note] 
-Because the high availability feature is domain-based, if the client attempting to connect is in a network environment where the DNS server cannot be accessed, the DB instance cannot be accessed through the domain, and successful connection is not possible in the event of a failover. 
-It takes approximately 3 seconds to reflect changes in the A record in the internal domain. The time required may vary depending on the DNS Cache policy of the client environment attempting to connect.
+> [Note]
+> As the high availability feature is based on a domain, if a client trying to connect is in a network environment where the DNS server cannot be reached, the DB instance cannot be accessed through the domain, and normal connection is not possible in the event of failover. It takes approximately 3 seconds for the changes to A record in the internal domain to take effect, but may vary depending on the DNS Cache policy in the client environment where attempting to connect.
 
 > [Caution] 
-If the position number value of the binary log between master and candidate master differs by more than 100,000,000, there is no failover.
+> If the position number value of the binary log between master and candidate master differs by more than 100,000,000, there is no failover.
 
-### Failover master
+### Failed over Master
 
-A master where a failure happened and action was taken is called a failover master. Automatic backups of the failover master are not performed and all other features cannot be performed except for recovery, rebuild, separate or delete of the failover master.
+A master that fails and conducts failover is called failover master. Backups of failed over master are not automatically performed, and all other features other than failed over master recovery, rebuild, separate, and delete are not performed.
 
-### Failover master recovery
+### Recover Failed Over Master
 
-If data is consistent during the failover process and binary logs are not lost from the time of failure to the time of attempting to recover, you can restore the failover master and promoted master back to a high availability configuration. The recovery fails if the data is not consistent or if the binary log required for recovery is lost because the replication relationship with the promoted master is re-established as is the database of the failover master. If the failover master recovery fails, you can re-enable the high availability feature by rebuilding.
+If the data is not consistent during failover and the binary log is not lost from the point of failure to the point of attempting recovery, the failed over and promoted masters can be recovered back to the high availability configuration. Because it re-configure replication relationships with the promoted master in the database of the failed over master, recovery fails once the data became inconsistent or once the binary log required for recovery was lost.
 
-> [Note] 
-Recovery is not supported for DB instances where failover occurred before April 11, 2023.
+If the failed over master fails to recover, you can re-enable the high availability feature by rebuilding.
+
+> [Note]
+> Recovery is not supported for DB instances where failover occurred before April 11, 2023.
 
 To recover a failover master, from the web console
 
-![db-instance-failover-repair-ko](https://static.toastoven.net/prod_rds/24.03.12/db-instance-failover-repair-ko.png)
+![db-instance-failover-repair-en](https://static.toastoven.net/prod_rds/24.03.12/db-instance-failover-repair-en.png)
 
 ❶ Select the failover master you want to recover from and click on **Recover 	
 Failed Over Master** menu from the drop-down menu.
 
-### Rebuild Failover Master
+### Rebuild Failed over Master
 
-If a failover master recovery fails, you can use rebuild to enable high availability again. Unlike recovery, rebuild removes all databases on the failover master and rebuilds it based on the database on the promoted master. Rebuilding of the failover master requires backup files and binary logs created with the Enable table lock option among DB instances in the replication group. If you do not have a backup file, use the following order to select the DB instance to perform backup.
+If the failed over master fails to recover, you can re-enable the high availability feature by rebuilding. Unlike recovery, rebuild removes all databases from the failed over master and rebuilds them based on the promoted master's database. In this process, if you do not have a backup file, use the following order to select the DB instance to perform backup.
 
 ❶ Read Replica with auto backup enabled 
 ❷ Master with auto backup enabled
@@ -656,9 +661,9 @@ To rebuild a failover master, from the web console
 
 ❶ Select the failover master you want to rebuild and click on **Rebuild failover master** menu from the drop-down menu.
 
-### Failover master separation
+### Separate Failed over Master
 
-If a failover master recovery fails and data calibration is required, you can disable high availability features by isolating the failover master. The replication relationship between the isolated master and the promoted master is cut off, each acting as a normal DB instance. After separation, recovery to the original configuration is not possible.
+If recovery of a failed over master fails and data correction is required, you can disable the high availability feature by separating that master. The replication relationship between the separated master and the promoted master is broken, and each behaves as a normal DB instance. After separation, you cannot recover to the existing configuration.
 
 To separate failover master, from the web console
 
@@ -678,11 +683,11 @@ For a high availability DB instance, you can select whether or not to restart wi
 After a restart using failover, the backup master will be restarted first. After that, the backup master will be promoted to the master through failover, and the existing master will act as the candidate master. Upon promotion, the A record in the internal domain for the connection will be changed from master to candidate master, so no application changes are required. The promoted master succeeds to all automatic backups of the old master. Point-in-time restoration with existing backups is not supported because the master changes during the failover and all binary logs are deleted. You can restore points-in-time from the time when the new backup is performed on the promoted master.
 
 > [Note] 
-Because the high availability feature is domain-based, if the client attempting to connect is in a network environment where the DNS server cannot be accessed, the DB instance cannot be accessed through the domain, and successful connection is not possible in the event of a failover. 
-It takes approximately 3 seconds to reflect changes in the A record in the internal domain. The time required may vary depending on the DNS Cache policy of the client environment attempting to connect.
+> Because the high availability feature is domain-based, if the client attempting to connect is in a network environment where the DNS server cannot be accessed, the DB instance cannot be accessed through the domain, and successful connection is not possible in the event of a failover. 
+> It takes approximately 3 seconds to reflect changes in the A record in the internal domain. The time required may vary depending on the DNS Cache policy of the client environment attempting to connect.
 
 > [Caution] 
-If the Seconds_Behind_Master value of the read replica included in the replication group with the candidate master is greater than or equal to 1, replication delay is considered to have occurred and a manual failover will fail. It is recommended that you perform manual failover during off-peak hours. Restart failures due to replication delays can be verified through the Events screen.
+> If the Seconds_Behind_Master value of the read replica included in the replication group with the candidate master is greater than or equal to 1, replication delay is considered to have occurred and a manual failover will fail. It is recommended that you perform manual failover during off-peak hours. Restart failures due to replication delays can be verified through the Events screen.
 
 When restarting with a failover, you can select the following additional items to increase stability.
 
@@ -843,17 +848,17 @@ mysql> CALL mysql.tcrds_innodb_monitor_reset_all('{counter-name|module_name|patt
 
 ## Data Migration
 
-* By using mysqldump, RDS can be exported data to outside or import from the outside of NHN Cloud RDS 
-* The mysqldump utility is provided by default along with mysql installation.
+* RDS can be exported as data to or imported from NHN Cloud RDS using mysqldump.
+* The mysqldump utility is provided by default when mysql is installed.
 
-### Export by using mysqldump
+### Export using mysqldump
 
-* Get NHN Cloud RDS instances prepared.
-* Verify that you have sufficient capacity on the computer on which the external instance or local client is installed to store the data to be exported.
-* If you need to export data to the outside of NHN Cloud, create a Floating IP to connect the data to the RDS instance you want to export.
-* Use mysqldump commands as below, to export data.
+* Prepare and use an instance of NHN Cloud RDS.
+* Check that the external instance on which you want to store the data to be exported, or the computer on which the local client is installed, has sufficient capacity.
+* If you need to export data outside of NHN Cloud, create Floating IP and connect it to the RDS instance where you want to export the data.
+* Export data externally using the mysqldump command below.
 
-#### Exporting in Files
+#### When exporting files
 
 ```
 mysqldump -h{rds_instance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
@@ -867,48 +872,50 @@ mysqldump -h{rds_instance_floating_ip} -u{db_id} -p{db_password} --port={db_port
 
 ### Import by using mysqldump
 
-* Get database prepared out of NHN Cloud RDS to import data.
-* See if NHN Cloud RDS instance to import has sufficient capacity.
+
+* Prepare db outside NHN Cloud RDS to import data.
+* Check that the NHN Cloud RDS instance that you import has sufficient capacity.
 * Create a Floating IP to connect to the NHN Cloud RDS instance.
-* Use the mysqldump command as below to import data.
+* Import data from outside using the mysqldump command below.
 
 ```
 mysqldump -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port} --single-transaction --set-gtid-purged=off --routines --events --triggers --databases {database_name1, database_name2, ...} | mysql -h{rds_insance_floating_ip} -u{db_id} -p{db_password} --port={db_port}
 ```
 
-#### If an error 'ERROR 1227' occurs while importing data
+#### When `ERROR 1227` occurs during data importing
 
-* `ERROR 1227` error occurs when DEFINER is defined on a stored object (trigger, view, function, or event) in the mysqldump file. To resolve this, delete the `DEFINER` part of the mysqldump file and proceed.
+* `ERROR 1227` occurs when a stored object (trigger, view, function, or event) in the mysqldump file has DEFINER definition.
+* To resolve this, delete the `DEFINER` part of the mysqldump file and proceed.
 
-#### If an error 'ERROR 1418' occurs while importing data
+#### When `ERROR 1418` occurs during data importing
 
 * `ERROR 1418` occurs when the function declaration in the mysqldump file does not contain NO SQL, READS SQL DATA, or DETERMINISTIC and binary logging is enabled.
-  * For detailed information, refer to [The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html) MySQL document. 
+  * For detailed information, refer to [The Binary Log](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html) MySQL document.
 * To resolve this, Parameter value of `log_bin_trust_function_creators` of DB instance to which you want to apply mysqldump file should be changed to `1`.
 
 ### Export by using replication
 
-* NHN Cloud RDS data can be exported to external database, by using replication.
-* External database must have the same or later version than NHN Cloud RDS.
-* Prepare an NHN Cloud RDS Master or Read Only Slave instance to export data.
-* Create a floating IP to connect to NHN Cloud RDS instance to export data.
-* Use commands as below, to export data in file, out of NHN Cloud RDS instance.
-* Exporting out of Master RDS Instances
+* Replication allows you export data from NHN Cloud RDS to external DB.
+* The external db version has to be the same as or later than the version of NHN Cloud RDS.
+* Prepare an instance of NHN Cloud RDS Master or Read Only Slave to export data.
+* Create Floating IP to connect to NHN Cloud RDS instances to export data.
+* Create Floating IP to connect to NHN Cloud RDS instances to export data.
+* When exporting from Master RDS instance.
 
 ```
 mysqldump -h{rds_master_instance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --master-data=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
-* Exporting out of Read Only Slave RDS Instances
+* When exporting from Read Only Slave RDS.
 
 ```
 mysqldump -h{rds_read_only_slave_instance_floating_ip} -u{db_id} -p{db_password} --port={db_port} --single-transaction --dump-slave=2 --routines --events --triggers --databases {database_name1, database_name2, ...} > {local_path_and_file_name}
 ```
 
-* Open backed up files and record MASTER_LOG_FILE and MASTER_LOG_POS written on footnotes.
-* Verify that the computer with external local clients or DBs installed to back up data from NHN Cloud RDS instance has sufficient capacity.
-* Add the following options to my.cnf (my.ini for Windows) file in external DB.
-* Put a different value for Server ID, from the Server ID of DB Configuration of NHN Cloud RDS Instance.
+* Open the backed up file and record the MASTER_LOG_FILE and MASTER_LOG_POS written in the annotation separately.
+* Check that the external local client or computer on which db is installed has sufficient capacity to back up data from the NHN Cloud RDS instance.
+* Add the following options to my.cnf (for winodws my.ini) file in external DB.
+* For server-id, enter a value different from the server-id of the DB Configuration entry for the NHN Cloud RDS instance.
 
 ```
 ...
@@ -919,15 +926,15 @@ replicate-ignore-db=rds_maintenance
 ...
 ```
 
-* Restart external database.
-* Use the command as below to enter backup file to external database.
+* Restart external DB.
+* Enter the backed up file into an external DB using the command below.
 
 ```
 mysql -h{external_db_host} -u{external_db_id} -p{external_db_password} --port={external_db_port} < {local_path_and_file_name}
 ```
 
-* Create an account from NHN Cloud RDS Instance for replication.
-* Before configuring new replication, execute the query as below to initialize replication information that might have existed. Execute RESET SLAVE, and any existing replication information is initialized.
+* Create an account for replication on the NHN Cloud RDS instance.
+* Before setting up a new replication, run the query below to initialize existing replication information that may exist. When you run RESET SLAVE, the existing replication information is initialized.
 
 ```
 STOP SLAVE;
@@ -935,7 +942,7 @@ STOP SLAVE;
 RESET SLAVE;
 ```
 
-* Execute the query as below to external database, by using account information for replication, as well as MASTER_LOG_FILE and MASTER_LOG_POS, recorded previously.
+* Run the query on the external DB as shown below, using the account information to be used for replication and the MASTER_LOG_FILE and MSATER_LOG_POS that recorded earlier.
 
 ```
 CHANGE MASTER TO master_host = '{rds_master_instance_floating_ip}', master_user='{user_id_for_replication}', master_password='{password_forreplication_user}', master_port ={rds_master_instance_port}, master_log_file ='{MASTER_LOG_FILE}', master_log_pos = {MASTER_LOG_POS};
@@ -943,9 +950,9 @@ CHANGE MASTER TO master_host = '{rds_master_instance_floating_ip}', master_user=
 START SLAVE;
 ```
 
-* After original data of NHN Cloud RDS instance become same as the external database, replication is closed by using the STOP SLAVE command to the external database.
+* If the source data of the external DB and the NHN Cloud RDS instance are identical, use the STOP SLAVE command to the external DB to terminate the replication
 
-### Import by Replication
+### Import with Replication
 
 * You can import external DBs into NHN Cloud RDS using replication.
 * NHN Cloud RDS version has to be the same as or later than the external DB version.
@@ -977,23 +984,25 @@ replicate-ignore-db=rds_maintenance
 ...
 ```
 
-* Restart external database.
-* Since it can take long to import through an external network, we recommend that you create an internal NHN Cloud image, copy the backup file and import it to NHN Cloud.
-* Enter backed up files to NHN Cloud RDS by using the command as below.
-* Since replication configuration does not support DNS, convert to IP before execution.
+* Restart external DB.
+* As importing over an external network can take a long time,
+* We recommend that you create an internal NHN Cloud Image, copy the backup file, and import it into NHN Cloud.
+* Enter the backed up file into NHN Cloud RDS with the command below.
+* Replication configuration does not support DNS, so convert to IP and run.
 
 ```
 mysql -h{rds_master_instance_floating_ip} -u{db_id} -p{db_password} --port={db_port} < {local_path_and_file_name}
 ```
 
-* Create an account for replication from internal MySQL instance.
+* Create an account for replication on an external MySQL instance.
 
 ```
 mysql> CREATE USER 'user_id_for_replication'@'{external_db_host}' IDENTIFIED BY '<password_forreplication_user>';
 mysql> GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'user_id_for_replication'@'{external_db_host}';
 ```
 
-* By using the account information for replication, and MASTER_LOG_FILE and MASTER_LOG_POS that were previously recorded, execute the query to NHN Cloud RDS like follows.
+* Run a query on NHN Cloud RDS as follows,
+  using the account information to be used for replication and the MASTER_LOG_FILE and MSATER_LOG_POS that recorded earlier.
 
 ```
 mysql> call mysql.tcrds_repl_changemaster ('rds_master_instance_floating_ip',rds_master_instance_port,'user_id_for_replication','password_forreplication_user','MASTER_LOG_FILE',MASTER_LOG_POS );
