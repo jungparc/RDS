@@ -7,7 +7,7 @@ high-availability configuration or back up only increments of data since the pre
 
 > [Note]
 > High availability DB instances perform backups on the redundant master so that the storage performance of the master is not degraded.
->However, backups can be performed on the master even if it is a high availability DB instance in the following cases.
+> However, backups can be performed on the master even if it is a high availability DB instance in the following cases.
 > * If a backup cannot be performed due to a candidate master failure.
 > * If you do not have a read replica in a situation where you need a backup taken from a DB instance other than the candidate master for rebuilding the candidate master and you do not have a read replica
 
